@@ -1,88 +1,126 @@
+/* Устанавливаем фон для страницы */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000;
+    background: url('wall.png') no-repeat center center fixed; /* Используем локальный файл wall.png */
+    background-size: cover; /* Фон занимает всю область экрана */
     color: #fff;
     text-align: center;
+    height: 100vh; /* Чтобы фон занимал весь экран */
 }
 
 /* Верхняя строка */
 .header {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: space-between; /* Заголовок слева, кнопка и стрелка справа */
+    align-items: center; /* Все элементы по одной высоте */
     background-color: #333;
     color: white;
     padding: 10px;
+    position: relative;
+    height: 50px;
 }
 
+/* Заголовок */
 .header .title {
+    margin-left: 10px;
     font-size: 24px;
-    margin-right: auto;
 }
 
-.header .nav {
+/* Контейнер для стрелки и кнопки */
+.header .buttons-container {
     display: flex;
-    gap: 20px;
-    margin-right: 20px;
+    align-items: center; /* Вертикальное выравнивание по центру */
+    gap: 10px; /* Отступ между стрелкой и кнопкой */
 }
 
-.header .nav a {
+/* Кнопка Telegram */
+.header .buttons-container .buttons {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 16px;
+    line-height: 16px; /* Для выравнивания текста внутри кнопки */
+}
+
+.header .buttons-container .buttons:hover {
+    background-color: darkorange;
+}
+
+/* Стрелочка для открытия меню */
+.menu-toggle {
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    z-index: 11;
+    transform: rotate(0deg); /* По умолчанию стрелочка смотрит вниз */
+    transition: transform 0.3s;
+}
+
+/* Меню по умолчанию скрыто */
+.nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    padding: 10px;
+    z-index: 10;
+}
+
+.nav a {
     color: white;
     text-decoration: none;
-    font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.header .nav a:hover {
+.nav a:hover {
     text-decoration: underline;
 }
 
-.header .buttons a {
-    background-color: orange;
-    color: white;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 15px;
-    font-size: 16px;
-    margin-left: 10px;
+/* Когда меню открыто, стрелочка поворачивается */
+.menu-open .menu-toggle {
+    transform: rotate(180deg); /* Поворот стрелочки */
 }
 
-
-    background-color: orange;
-    color: white;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 15px;
-    font-size: 16px;
-}
-
-.header .buttons a:hover {
-    background-color: darkorange;
+/* Навигация отображается при открытом меню */
+.menu-open .nav {
+    display: flex;
 }
 
 /* Основное содержимое */
 .content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Секции с информацией */
 .section {
-    margin-bottom: 30px;
+    margin: 15px auto; /* Уменьшаем расстояние между секциями */
     padding: 20px;
     background-color: #222;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
 }
 
-.section h2 {
-    margin-top: 0;
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .section {
+        margin: 20px 10px; /* На мобильных устройствах сохраняем более крупные отступы */
+        padding: 15px;
+        width: 100%;
+    }
 }
 
-.mod-list {
-    list-style: none;
-    text-align: center;
-}
-
-.mod-list li {
-    margin-bottom: 10px;
 }
